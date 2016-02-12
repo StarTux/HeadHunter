@@ -1,0 +1,15 @@
+name: HeadHunter
+version: 0.1
+author: StarTux
+description: Make a player head drop when people die in pvp
+main: com.winthier.headhunter.HeadHunterPlugin
+depend: [ Exploits ]
+commands:
+  headhunter:
+    description: Debug command
+    permission: headhunter.headhunter
+    usage: /<command> reload|info
+permissions:
+  headhunter.headhunter:
+    description: Use the /headhunter command
+    default: op
