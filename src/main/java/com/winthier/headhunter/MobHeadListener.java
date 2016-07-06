@@ -256,6 +256,12 @@ class MobHeadListener implements Listener {
             name = "Wither Head";
             valid = true;
             break;
+        case SHULKER:
+            damage = (short)3;
+            owner = "MHF_Shulker";
+            name = "Shulker Head";
+            valid = true;
+            break;
         }
         if (!valid) return null;
         final ItemStack result = new ItemStack(Material.SKULL_ITEM, 1, damage);
