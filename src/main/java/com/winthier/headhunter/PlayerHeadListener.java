@@ -3,6 +3,7 @@ package com.winthier.headhunter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -47,11 +48,7 @@ class PlayerHeadListener implements Listener {
         }
         if (damager == null || damager.equals(event.getEntity())) return;
         if (random.nextInt(100) < chance) {
-            ItemStack drop = new ItemStack(Material.SKULL_ITEM, 1, (short)3);
-            SkullMeta meta = (SkullMeta)drop.getItemMeta();
-            meta.setOwner(event.getEntity().getName());
-            drop.setItemMeta(meta);
-            event.getEntity().getWorld().dropItemNaturally(event.getEntity().getEyeLocation(), drop);
+            spawnHead((Player)event.getEntity());
             HeadHunterPlugin.instance.getLogger().info(event.getEntity().getName() + " dropped their head.");
             if (messages.size() > 0) {
                 String message = messages.get(random.nextInt(messages.size()));
@@ -65,5 +62,11 @@ class PlayerHeadListener implements Listener {
                 }
             }
         }
+    }
+
+    void spawnHead(Player player) {
+        String cmd = String.format("minecraft:execute %s ~ ~ ~ minecraft:summon minecraft:item ~ ~1.5 ~ {PickupDelay:20,Item:{id:minecraft:skull,Damage:3,Count:1,tag:{SkullOwner:{Name:%s,Id:%s}}}}",
+                                   player.getName(), player.getName(), player.getUniqueId());
+        Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), cmd);
     }
 }

@@ -30,6 +30,8 @@ class HeadHunterCommand implements CommandExecutor {
                 sender.sendMessage(" " + entry.getKey() + ": " + entry.getValue());
             }
             sender.sendMessage("]");
+        } else if (args[0].equals("test") && args.length == 1) {
+            PlayerHeadListener.instance.spawnHead(player);
         } else {
             return false;
         }
