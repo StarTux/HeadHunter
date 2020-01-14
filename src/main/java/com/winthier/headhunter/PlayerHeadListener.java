@@ -5,13 +5,10 @@ import java.util.Random;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
 
 @RequiredArgsConstructor
 public final class PlayerHeadListener implements Listener {
@@ -36,12 +33,9 @@ public final class PlayerHeadListener implements Listener {
         if (killer == null) return;
         if (random.nextDouble() >= chance) return;
         // No return; drop head
-        ItemStack drop = new ItemStack(Material.PLAYER_HEAD);
-        SkullMeta meta = (SkullMeta) drop.getItemMeta();
-        meta.setOwningPlayer(victim);
-        meta.setPlayerProfile(victim.getPlayerProfile());
-        drop.setItemMeta(meta);
-        victim.getWorld().dropItemNaturally(event.getEntity().getEyeLocation(), drop);
+        victim.getWorld()
+            .dropItemNaturally(victim.getEyeLocation(), plugin.makePlayerHead(victim))
+            .setOwner(killer.getUniqueId());
         // Send Message
         if (messages.isEmpty()) return;
         String message = messages.get(random.nextInt(messages.size()));

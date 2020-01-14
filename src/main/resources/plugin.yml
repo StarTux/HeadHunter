@@ -10,7 +10,10 @@ commands:
   headhunter:
     description: Debug command
     permission: headhunter.headhunter
-    usage: /headhunter reload
+    usage: |-
+      /headhunter reload
+      /headhunter give [player] - Give player their own head
+      /headhunter spawn [player] - Give yourself a player head
 permissions:
   headhunter.headhunter:
     description: Use the /headhunter command
