@@ -2,22 +2,20 @@ package com.winthier.headhunter;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class HeadHunterPlugin extends JavaPlugin {
-    static HeadHunterPlugin instance = null;
+public final class HeadHunterPlugin extends JavaPlugin {
+    PlayerHeadListener playerHeadListener = new PlayerHeadListener(this);
+    HeadHunterCommand command = new HeadHunterCommand(this);
 
     @Override
     public void onEnable() {
-        instance = this;
         saveDefaultConfig();
-        getServer().getPluginManager().registerEvents(new PlayerHeadListener(), this);
-        getServer().getPluginManager().registerEvents(new MobHeadListener(), this);
-        getCommand("headhunter").setExecutor(new HeadHunterCommand());
+        getServer().getPluginManager().registerEvents(playerHeadListener, this);
+        getCommand("headhunter").setExecutor(command);
         load();
     }
 
     void load() {
         reloadConfig();
-        PlayerHeadListener.instance.load();
-        MobHeadListener.instance.load();
+        playerHeadListener.load();
     }
 }

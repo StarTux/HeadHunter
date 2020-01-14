@@ -1,9 +1,10 @@
-PlayerChance: 10
-MobChance: 5000
+PlayerChance: 0.3
+MessageRange: 32
+MessagePrefix: '&4&o'
 Messages:
-- '&4&oNo reason to lose your head.'
-- '&4&oDon''t get ahead of yourself.'
-- '&4&oThat''s not the way to get ahead in life.'
-- '&4&oIt''s a shame you weren''t more headstrong.'
-- '&4&oYou''l never be the head of a major corporation.'
-- '&4&oHeading somewhere?'
+- 'No reason to lose your head, %player%!'
+- 'Don''t get ahead of yourself, %player%!'
+- 'That''s not the way to get ahead in life, %player%!'
+- 'It''s a shame %player% wasn''t more headstrong.'
+- '%player% will never be the head of a major corporation.'
+- 'Heading somewhere, %player%?'
