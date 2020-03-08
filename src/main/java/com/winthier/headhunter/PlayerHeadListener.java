@@ -30,7 +30,7 @@ public final class PlayerHeadListener implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player victim = event.getEntity();
         Player killer = victim.getKiller();
-        if (killer == null) return;
+        if (killer == null || victim.equals(killer)) return;
         if (random.nextDouble() >= chance) return;
         // No return; drop head
         victim.getWorld()
