@@ -31,7 +31,7 @@ public final class HeadHunterPlugin extends JavaPlugin {
         meta.setOwningPlayer(player);
         meta.setPlayerProfile(player.getPlayerProfile());
         meta.setLore(Arrays.asList(ChatColor.WHITE
-                                   + "killed by "
+                                   + "Killed by "
                                    + ChatColor.GOLD
                                    + killer.getName()
                                    + ChatColor.WHITE + "."));
