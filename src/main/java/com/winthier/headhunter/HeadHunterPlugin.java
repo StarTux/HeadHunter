@@ -1,5 +1,7 @@
 package com.winthier.headhunter;
 
+import java.util.Arrays;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -23,11 +25,16 @@ public final class HeadHunterPlugin extends JavaPlugin {
         playerHeadListener.load();
     }
 
-    ItemStack makePlayerHead(Player player) {
+    ItemStack makePlayerHead(Player player, Player killer) {
         ItemStack item = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta meta = (SkullMeta) item.getItemMeta();
         meta.setOwningPlayer(player);
         meta.setPlayerProfile(player.getPlayerProfile());
+        meta.setLore(Arrays.asList(ChatColor.WHITE
+                                   + "killed by "
+                                   + ChatColor.GOLD
+                                   + killer.getName()
+                                   + ChatColor.WHITE + "."));
         item.setItemMeta(meta);
         return item;
     }

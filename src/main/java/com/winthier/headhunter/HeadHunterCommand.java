@@ -40,7 +40,8 @@ public final class HeadHunterCommand implements CommandExecutor {
                 target = player;
             }
             target.getWorld()
-                .dropItem(target.getEyeLocation(), plugin.makePlayerHead(target))
+                .dropItem(target.getEyeLocation(),
+                          plugin.makePlayerHead(target, target))
                 .setOwner(target.getUniqueId());
             sender.sendMessage("Player head given to " + target.getName() + ".");
             return true;
@@ -62,7 +63,8 @@ public final class HeadHunterCommand implements CommandExecutor {
                 target = player;
             }
             player.getWorld()
-                .dropItem(player.getEyeLocation(), plugin.makePlayerHead(target))
+                .dropItem(player.getEyeLocation(),
+                          plugin.makePlayerHead(target, target))
                 .setOwner(player.getUniqueId());
             player.sendMessage(ChatColor.YELLOW
                                + "Spawned player head of " + target.getName() + ".");
