@@ -28,7 +28,6 @@ public final class HeadHunterPlugin extends JavaPlugin {
     ItemStack makePlayerHead(Player player, Player killer) {
         ItemStack item = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta meta = (SkullMeta) item.getItemMeta();
-        meta.setOwningPlayer(player);
         meta.setPlayerProfile(player.getPlayerProfile());
         meta.setLore(Arrays.asList(ChatColor.WHITE
                                    + "Killed by "
