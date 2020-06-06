@@ -34,9 +34,7 @@ public final class PlayerHeadListener implements Listener {
         if (random.nextDouble() >= chance) return;
         // No return; drop head
         victim.getWorld()
-            .dropItemNaturally(victim.getEyeLocation(),
-                               plugin.makePlayerHead(victim, killer))
-            .setOwner(killer.getUniqueId());
+            .dropItemNaturally(victim.getEyeLocation(), plugin.makePlayerHead(victim, killer));
         // Send Message
         if (messages.isEmpty()) return;
         String message = messages.get(random.nextInt(messages.size()));
