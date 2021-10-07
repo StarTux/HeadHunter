@@ -1,7 +1,9 @@
 package com.winthier.headhunter;
 
-import java.util.Arrays;
-import org.bukkit.ChatColor;
+import java.util.List;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -27,15 +29,15 @@ public final class HeadHunterPlugin extends JavaPlugin {
 
     ItemStack makePlayerHead(Player player, Player killer) {
         ItemStack item = new ItemStack(Material.PLAYER_HEAD);
-        SkullMeta meta = (SkullMeta) item.getItemMeta();
-        meta.setOwningPlayer(player);
-        meta.setPlayerProfile(player.getPlayerProfile());
-        meta.setLore(Arrays.asList(ChatColor.WHITE
-                                   + "Killed by "
-                                   + ChatColor.GOLD
-                                   + killer.getName()
-                                   + ChatColor.WHITE + "."));
-        item.setItemMeta(meta);
+        item.editMeta(m -> {
+                SkullMeta meta = (SkullMeta) m;
+                meta.setOwningPlayer(player);
+                meta.setPlayerProfile(player.getPlayerProfile());
+                meta.lore(List.of(Component.text().decoration(TextDecoration.ITALIC, false)
+                                  .append(Component.text("Killed by ", NamedTextColor.GRAY))
+                                  .append(Component.text(killer.getName(), NamedTextColor.GOLD))
+                                  .build()));
+            });
         return item;
     }
 }
